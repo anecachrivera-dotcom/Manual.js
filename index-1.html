@@ -1,57 +1,272 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Inicio - Práctica JavaScript</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Inicio - Práctica JavaScript</title>
+
+<style>
+
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:"Segoe UI",Roboto,Arial,sans-serif;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:#222;
+overflow-x:hidden;
+}
+
+/* Fondo animado */
+.bg-animated{
+position:fixed;
+inset:0;
+z-index:-1;
+background:linear-gradient(270deg,#667eea,#764ba2,#6dd5ed,#c471f5);
+background-size:400% 400%;
+animation:gradientMove 18s ease infinite;
+filter:blur(60px);
+opacity:.7;
+}
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* Contenedor */
+.page{
+max-width:1100px;
+margin:40px auto;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(25px);
+border-radius:20px;
+box-shadow:0 25px 60px rgba(0,0,0,.2);
+overflow:hidden;
+}
+
+/* Header */
+.site-header{
+padding:18px 22px;
+background:rgba(0,0,0,.25);
+color:#fff;
+display:flex;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+.logo{
+background:linear-gradient(135deg,#ff8a00,#ff3d00);
+padding:10px 14px;
+border-radius:12px;
+font-weight:800;
+margin-right:12px;
+}
+.site-name{font-weight:800;font-size:18px}
+
+/* Main */
+.home-main{padding:40px;text-align:center}
+
+/* Card bienvenida */
+.welcome-card{
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+margin-bottom:30px;
+transition:.3s;
+}
+.welcome-card:hover{
+transform:translateY(-8px);
+}
+
+#welcomeTitle{
+font-size:34px;
+background:linear-gradient(90deg,#667eea,#764ba2);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* CTA */
+.cta-row{margin-top:15px}
+.cta-btn{
+background:linear-gradient(135deg,#ff512f,#dd2476);
+color:white;
+padding:12px 20px;
+border-radius:14px;
+font-weight:800;
+text-decoration:none;
+margin:5px;
+display:inline-block;
+transition:.2s;
+}
+.cta-btn:hover{transform:scale(1.05)}
+
+.cta-ghost{
+background:white;
+padding:12px 18px;
+border-radius:14px;
+text-decoration:none;
+color:#333;
+margin:5px;
+}
+
+/* Grid botones */
+.big-buttons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:20px;
+}
+.big-btn{
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+padding:18px;
+border-radius:16px;
+font-weight:700;
+text-decoration:none;
+transition:.3s;
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+.big-btn:hover{
+transform:translateY(-6px) scale(1.03);
+box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+/* Footer */
+.site-footer{
+padding:15px;
+text-align:center;
+color:white;
+opacity:.8;
+}
+
+/* Botón flotante */
+.floating-btn{
+position:fixed;
+bottom:25px;
+right:25px;
+background:linear-gradient(135deg,#ff512f,#dd2476);
+color:white;
+border:none;
+padding:16px 20px;
+border-radius:50%;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+transition:.3s;
+}
+.floating-btn:hover{transform:scale(1.1)}
+
+/* Modal */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+}
+.modal-content{
+background:white;
+padding:30px;
+border-radius:16px;
+width:90%;
+max-width:500px;
+text-align:center;
+animation:pop .3s ease;
+}
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+.close-btn{
+float:right;
+cursor:pointer;
+font-weight:bold;
+}
+.modal-btn{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+cursor:pointer;
+}
+
+</style>
 </head>
-<body class="home-page">
-  <div class="bg-animated"></div>
 
-  <div class="page home">
-    <header class="site-header">
-      <div class="header-top">
-        <div class="logo">AB</div>
-        <div class="site-name">PRÁCTICA JAVASCRIPT</div>
-      </div>
-    </header>
+<body>
 
-    <main class="home-main">
-      <div class="welcome-card" id="welcomeCard">
-        <h1 id="welcomeTitle">¡Bienvenido/a!</h1>
-        <p id="welcomeText" class="typed"></p>
-        <div class="cta-row">
-          <a class="cta-btn" href="tema1.html">Empezar: Tema 1 — JavaScript</a>
-          <a class="cta-ghost" href="materias.html">Ver todos los temas</a>
-        </div>
-      </div>
+<div class="bg-animated"></div>
 
-      <h2 id="temas" class="center-title">Temas disponibles</h2>
+<div class="page">
 
-      <div class="big-buttons">
-        <a class="big-btn" href="tema1.html">1 — Introducción a JavaScript</a>
-        <a class="big-btn" href="tema2.html">2 — Tipos de datos</a>
-        <a class="big-btn" href="tema3.html">3 — Operadores y expresiones</a>
-        <a class="big-btn" href="tema4.html">4 — Operadores</a>
-        <a class="big-btn" href="tema5.html">5 — Conversión de tipos</a>
-        <a class="big-btn" href="tema6.html">6 — Variables</a>
-        <a class="big-btn" href="tema7.html">7 — Entrada y salida</a>
-        <a class="big-btn" href="tema8.html">8 — Estructuras de control</a>
-        <a class="big-btn" href="tema9.html">9 — Funciones</a>
-        <a class="big-btn" href="tema10.html">10 — Objetos</a>
-      </div>
+<header class="site-header">
+<div class="logo">AB</div>
+<div class="site-name">PRÁCTICA JAVASCRIPT</div>
+</header>
 
-      <p class="hint">Consejo: abre en pantalla completa para mejor experiencia.</p>
-    </main>
+<main class="home-main">
 
-    <footer class="site-footer small">
-      <div>DERECHOS RESERVADOS © 2025 — Elaborado por: <strong>Anelyan</strong></div>
-    </footer>
-  </div>
+<div class="welcome-card">
+<h1 id="welcomeTitle">¡Bienvenido/a!</h1>
+<p>Aprende JavaScript desde cero hasta avanzado con ejemplos prácticos.</p>
+<div class="cta-row">
+<a class="cta-btn" href="#">Empezar ahora</a>
+<a class="cta-ghost" href="#">Ver todos los temas</a>
+</div>
+</div>
 
-  <script src="script.js"></script>
+<h2 style="color:white;">Temas disponibles</h2>
+
+<div class="big-buttons">
+<a class="big-btn" href="#">1 — Introducción</a>
+<a class="big-btn" href="#">2 — Tipos de datos</a>
+<a class="big-btn" href="#">3 — Operadores</a>
+<a class="big-btn" href="#">4 — Conversión</a>
+<a class="big-btn" href="#">5 — Variables</a>
+<a class="big-btn" href="#">6 — Entrada y salida</a>
+<a class="big-btn" href="#">7 — Estructuras</a>
+<a class="big-btn" href="#">8 — Funciones</a>
+<a class="big-btn" href="#">9 — Objetos</a>
+<a class="big-btn" href="#">10 — Proyecto Final</a>
+</div>
+
+</main>
+
+<footer class="site-footer">
+DERECHOS RESERVADOS © 2025 — Elaborado por: <strong>Anelyan</strong>
+</footer>
+
+</div>
+
+<!-- Botón flotante -->
+<button class="floating-btn" onclick="openModal()">ℹ</button>
+
+<!-- Modal -->
+<div class="modal" id="infoModal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal()">✖</span>
+<h2>Sobre esta plataforma</h2>
+<p>Esta página fue creada para practicar JavaScript paso a paso.</p>
+<ul style="text-align:left;margin-top:10px;">
+<li>✔ 10 temas organizados</li>
+<li>✔ Diseño moderno</li>
+<li>✔ Experiencia interactiva</li>
+</ul>
+<button class="modal-btn" onclick="closeModal()">Cerrar</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+document.getElementById("infoModal").style.display="flex";
+}
+function closeModal(){
+document.getElementById("infoModal").style.display="none";
+}
+</script>
+
 </body>
 </html>
-
-
